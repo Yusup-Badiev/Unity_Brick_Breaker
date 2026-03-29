@@ -19,7 +19,11 @@ public class Ball_movment : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision detected with 2d");
+        Debug.Log("Collision detected with:" + collision.gameObject.name);
+        if (collision.gameObject.name == "Bottom Wall")
+        {
+            Destroy(gameObject);
+        }
         Vector2 reflectedDirection = Vector2.Reflect(currentDirection, collision.contacts[0].normal);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.linearVelocity = reflectedDirection * speed;
